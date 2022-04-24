@@ -6,9 +6,6 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-import static PageObject.MainPage.MAIN_PAGE_URL;
-import static com.codeborne.selenide.WebDriverRunner.url;
-
 public class LoginPage {
 
     public static final String LOGIN_PAGE_URL = "https://stellarburgers.nomoreparties.site/login";
@@ -53,12 +50,6 @@ public class LoginPage {
     @Step("Wait after registration")
     public void waitAfterEntry() {
         entryButton.shouldBe(Condition.hidden);
-    }
-
-    //Проверка урла после успешного входа
-    @Step("Check the url after entry")
-    public boolean checkTheUrlAfterSuccessfulEntry() {
-        return url().equals(MAIN_PAGE_URL);
     }
 
     //Переменные для входа пользователя (постоянный тестовый пользователь)

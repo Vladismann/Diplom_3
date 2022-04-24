@@ -1,6 +1,5 @@
 package PageObject;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
@@ -10,9 +9,6 @@ public class MainPage {
 
     //Урл главной страницы
     public static final String MAIN_PAGE_URL = "https://stellarburgers.nomoreparties.site/";
-    //Кнопка "Конструктор"
-    @FindBy(how = How.XPATH, using = ".//p[text()='Конструктор']")
-    private SelenideElement constructorButton;
     //Кнопка "Войти в аккаунт"
     @FindBy(how = How.XPATH, using = ".//button[text()='Войти в аккаунт']")
     private SelenideElement accountEntryButton;

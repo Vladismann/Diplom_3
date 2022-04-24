@@ -12,7 +12,8 @@ import static PageObject.MainPage.MAIN_PAGE_URL;
 import static PageObject.RegisterPage.REGISTER_PAGE_URL;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.page;
-import static org.junit.Assert.assertTrue;
+import static com.codeborne.selenide.WebDriverRunner.url;
+import static org.junit.Assert.assertEquals;
 
 public class LoginOfUserTests {
 
@@ -31,7 +32,8 @@ public class LoginOfUserTests {
         LoginPage login = page(LoginPage.class);
         login.entry(login.EMAIL, login.PASSWORD);
         login.waitAfterEntry();
-        assertTrue("After successful login user must be redirected on the main page!", login.checkTheUrlAfterSuccessfulEntry());
+        assertEquals("After successful login user must be redirected on the main page!",
+                url(), MAIN_PAGE_URL);
     }
 
     //Корректный вход с главной страницы через кнопку "Личный кабинет"
@@ -43,7 +45,8 @@ public class LoginOfUserTests {
         LoginPage login = page(LoginPage.class);
         login.entry(login.EMAIL, login.PASSWORD);
         login.waitAfterEntry();
-        assertTrue("After successful login user must be redirected on the main page!", login.checkTheUrlAfterSuccessfulEntry());
+        assertEquals("After successful login user must be redirected on the main page!",
+                url(), MAIN_PAGE_URL);
     }
 
     //Корректный вход со страницы регистрации через кнопку "Войти"
@@ -55,9 +58,11 @@ public class LoginOfUserTests {
         LoginPage login = page(LoginPage.class);
         login.entry(login.EMAIL, login.PASSWORD);
         login.waitAfterEntry();
-        assertTrue("After successful login user must be redirected on the main page!", login.checkTheUrlAfterSuccessfulEntry());
+        assertEquals("After successful login user must be redirected on the main page!",
+                url(), MAIN_PAGE_URL);
     }
 
+    //Переход со страницы восстановления пароля через кнопку "Войти"
     @Test
     @Name("Correct entry from the forgot password page via the entry button")
     public void checkTheCorrectEntryFromForgotPasswordPageViaPersonalEntryButton() {
@@ -66,7 +71,8 @@ public class LoginOfUserTests {
         LoginPage login = page(LoginPage.class);
         login.entry(login.EMAIL, login.PASSWORD);
         login.waitAfterEntry();
-        assertTrue("After successful login user must be redirected on the main page!", login.checkTheUrlAfterSuccessfulEntry());
+        assertEquals("After successful login user must be redirected on the main page!",
+                url(), MAIN_PAGE_URL);
     }
 
 }

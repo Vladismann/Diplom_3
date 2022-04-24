@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
@@ -27,35 +28,41 @@ public class RegisterPage {
     @FindBy(how = How.XPATH, using = ".//p[text()='Некорректный пароль']")
     private SelenideElement incorrectPasswordSign;
 
-    @Step("Set name")
     //Ввод имени
+    @Step("Set name")
     public void setName(String name) {
         nameEmailPasswordFields.get(0).setValue(name);
     }
 
-    @Step("Set email")
     //Ввод почты
+    @Step("Set email")
     public void setEmail(String email) {
         nameEmailPasswordFields.get(1).setValue(email);
     }
 
-    @Step("Set password")
     //Ввод пароля
+    @Step("Set password")
     public void setPassword(String password) {
         nameEmailPasswordFields.get(2).setValue(password);
     }
 
-    @Step("Registration")
+    //Нажатие на кнопку регистрации
+    @Step("Click registry button")
+    public void clickRegistrationButton() {
+        registryButton.click();
+    }
+
     //Регистрация
+    @Step("Registration")
     public void registration(String name, String email, String password) {
         setName(name);
         setEmail(email);
         setPassword(password);
-        registryButton.click();
+        clickRegistrationButton();
     }
 
-    @Step("Check incorrect password sign")
     //Проверка надписи некорретного пароля
+    @Step("Check incorrect password sign")
     public boolean checkIncorrectPasswordSign() {
         return incorrectPasswordSign.isDisplayed();
     }
@@ -66,10 +73,22 @@ public class RegisterPage {
         registryButton.shouldBe(Condition.hidden);
     }
 
-    @Step("Check the url after registration")
     //Проверка урла после успешной регистрации
+    @Step("Check the url after registration")
     public boolean checkTheUrlAfterSuccessfulRegistration() {
         return url().equals(LOGIN_PAGE_URL);
     }
+
+    //Нажать на кнопку "Войти"
+    @Step("Click the entry button")
+    public void clickTheEntryButton() {
+        entryButton.scrollTo().click();
+    }
+
+    //Переменные для регистрации пользователя
+    public final String NAME = "test" + RandomStringUtils.randomAlphabetic(3);
+    public final String EMAIL = "test" + RandomStringUtils.randomAlphabetic(3) + "@mail.ru";
+    public final String PASSWORD = "123456";
+    public final String INCORRECT_PASSWORD = "12345";
 
 }

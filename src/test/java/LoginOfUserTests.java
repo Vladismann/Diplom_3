@@ -39,7 +39,7 @@ public class LoginOfUserTests {
     //Корректный вход с главной страницы через кнопку "Личный кабинет"
     @Test
     @Name("Correct entry from the main page via the personal account button")
-    public void checkTheCorrectEntryFromMainPageViaPersonalAccountButton() {
+    public void checkLoginFromMainPageViaPersonalAccountButton() {
         MainPage main = open(MAIN_PAGE_URL, MainPage.class);
         main.clickPersonalAccountButton();
         LoginPage login = page(LoginPage.class);
@@ -52,7 +52,7 @@ public class LoginOfUserTests {
     //Корректный вход со страницы регистрации через кнопку "Войти"
     @Test
     @Name("Correct entry from the registration page via the entry button")
-    public void checkTheCorrectEntryFromRegistrationPageViaPersonalAccountButton() {
+    public void checkLoginFromRegistrationPageViaPersonalAccountButton() {
         RegisterPage register = open(REGISTER_PAGE_URL, RegisterPage.class);
         register.clickTheEntryButton();
         LoginPage login = page(LoginPage.class);
@@ -65,7 +65,7 @@ public class LoginOfUserTests {
     //Переход со страницы восстановления пароля через кнопку "Войти"
     @Test
     @Name("Correct entry from the forgot password page via the entry button")
-    public void checkTheCorrectEntryFromForgotPasswordPageViaPersonalEntryButton() {
+    public void checkLoginFromForgotPasswordPageViaEntryButton() {
         ForgotPasswordPage forgotPasswordPage = open(FORGOT_PASSWORD_URL, ForgotPasswordPage.class);
         forgotPasswordPage.clickTheEntryButton();
         LoginPage login = page(LoginPage.class);

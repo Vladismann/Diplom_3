@@ -26,7 +26,7 @@ public class LoginOfUserTests {
     //Корректный вход с главной страницы через кнопку "Войти в аккаунт"
     @Test
     @Name("Correct entry from the main page via the account entry button")
-    public void checkTheCorrectEntryFromMainPageViaEntryButton() {
+    public void checkLoginFromMainPageViaEntryButton() {
         MainPage main = open(MAIN_PAGE_URL, MainPage.class);
         main.clickAccountEntryButton();
         LoginPage login = page(LoginPage.class);

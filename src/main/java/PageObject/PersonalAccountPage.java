@@ -41,14 +41,14 @@ public class PersonalAccountPage {
         logoButton.click();
     }
 
-    @Step("Wait after transition on the PA page")
     //Ждем загрузку страницы
+    @Step("Wait after transition on the PA page")
     public void waitAfterTransition() {
         logOutButton.shouldBe(Condition.visible);
     }
 
-    @Step("Wait after log out")
     //Ожидание после выхода
+    @Step("Wait after log out")
     public void waitAfterLogOut() {
         logOutButton.shouldBe(Condition.disappear);
     }

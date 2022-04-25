@@ -73,12 +73,6 @@ public class RegisterPage {
         registryButton.shouldBe(Condition.hidden);
     }
 
-    //Проверка урла после успешной регистрации
-    @Step("Check the url after registration")
-    public boolean checkTheUrlAfterSuccessfulRegistration() {
-        return url().equals(LOGIN_PAGE_URL);
-    }
-
     //Нажать на кнопку "Войти"
     @Step("Click the entry button")
     public void clickTheEntryButton() {

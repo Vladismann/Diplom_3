@@ -10,7 +10,7 @@ public class LoginPage {
 
     public static final String LOGIN_PAGE_URL = "https://stellarburgers.nomoreparties.site/login";
 
-    //Поле ввода почта
+    //Поле ввода почты
     @FindBy(how = How.XPATH, using = ".//input[@name='name']")
     public SelenideElement emailField;
     //Поле ввода пароля
@@ -46,8 +46,8 @@ public class LoginPage {
         clickEntryButton();
     }
 
-    //Ждем пока кнопка входа исчезнет после успешной регистрации
-    @Step("Wait after registration")
+    //Ждем пока кнопка входа исчезнет после успешного входа
+    @Step("Wait after login")
     public void waitAfterEntry() {
         entryButton.shouldBe(Condition.hidden);
     }

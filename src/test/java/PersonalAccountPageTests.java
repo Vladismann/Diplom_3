@@ -1,25 +1,46 @@
 import PageObject.LoginPage;
 import PageObject.MainPage;
 import PageObject.PersonalAccountPage;
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import jdk.jfr.Name;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 import static PageObject.LoginPage.LOGIN_PAGE_URL;
 import static PageObject.MainPage.MAIN_PAGE_URL;
 import static PageObject.PersonalAccountPage.PERSONAL_ACCOUNT_PAGE_URL;
-import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.page;
+import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static org.junit.Assert.assertEquals;
 
+@RunWith(Parameterized.class)
 public class PersonalAccountPageTests {
+
+    //Параметризация для кроссбраузерного тестирования
+    private final String browser;
+
+    public PersonalAccountPageTests(String browser) {
+        this.browser = browser;
+    }
+
+    @Parameterized.Parameters(name = "{0} browser")
+    public static Object[][] browserForTest() {
+        return new Object[][]{
+                {"Chrome"},
+                {"Edge"},
+                {"FireFox"}
+        };
+    }
 
     //Логинимся перед тестом
     @Before
     public void login() {
+        closeWebDriver();
+        Configuration.browser = browser;
         MainPage main = open(MAIN_PAGE_URL, MainPage.class);
         main.clickAccountEntryButton();
         LoginPage login = page(LoginPage.class);

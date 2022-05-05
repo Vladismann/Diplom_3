@@ -5,8 +5,6 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-import static com.codeborne.selenide.Condition.visible;
-
 public class MainPage {
 
     //Урл главной страницы
@@ -38,6 +36,28 @@ public class MainPage {
     //Последний элемент в конструкторе для проверки переходов
     @FindBy(how = How.XPATH, using = "//p[text()='Сыр с астероидной плесенью']")
     private SelenideElement lastIngredient;
+    //Корзина для создания заказа
+    @FindBy(how = How.CLASS_NAME, using = "BurgerConstructor_basket__list__l9dp_")
+    private SelenideElement orderBasket;
+    //Элемент из раздела булок для drag and drop
+    @FindBy(how = How.XPATH, using = ".//p[text()='Флюоресцентная булка R2-D3']")
+    private SelenideElement bunForDrop;
+    //Отображение булки после перемещения в корзину
+    @FindBy(how = How.XPATH, using = ".//span[text()='Флюоресцентная булка R2-D3 (верх)']")
+    private SelenideElement bunInBasket;
+    //Элемент из раздела соусов для drag and drop
+    @FindBy(how = How.XPATH, using = ".//p[text()='Соус Spicy-X']")
+    private SelenideElement sauceForDrop;
+    //Отображение соуса после перемещения в корзину
+    @FindBy(how = How.XPATH, using = ".//span[text()='Соус Spicy-X']")
+    private SelenideElement sauceInBasket;
+    //Элемент из раздела начинок для drag and drop
+    @FindBy(how = How.XPATH, using = ".//p[text()='Хрустящие минеральные кольца']")
+    private SelenideElement fillingForDrop;
+    //Отображение начинки после перемещения в корзину
+    @FindBy(how = How.XPATH, using = ".//span[text()='Хрустящие минеральные кольца']")
+    private SelenideElement fillingInBasket;
+
 
     //Нажать на кнопку "Войти в аккаунт"
     @Step("Click the account entry button")
@@ -51,28 +71,30 @@ public class MainPage {
         personalAccountButton.click();
     }
 
-    //Нажать на кнопку "Начинки" и проверить отображение заголовка
+    //Нажать на кнопку "Начинки", переместить элемент начинок в корзину и проверить его отображение в корзине
     @Step("Click the fillings button and check the sign")
     public boolean clickFillingButtonAndCheckTheSign() {
         fillingsButton.click();
-        fillingsSign.shouldBe(visible);
-        return fillingsButton.isDisplayed();
+        fillingForDrop.dragAndDropTo(orderBasket);
+        return fillingInBasket.isDisplayed();
     }
 
-    //Листаем список вниз и жмем на кнопку "Соусы", чтобы проверить переход и отображение заголовка
+    //Листаем список вниз и жмем на кнопку "Соусы", перемещаем элемент соусов в корзину, проверяем отображение элемента в корзине
     @Step("Click the sauces button and check the sign")
     public boolean clickSaucesButtonAndCheckTheSign() {
         lastIngredient.scrollIntoView(true);
         saucesButton.click();
-        return saucesButton.isDisplayed();
+        sauceForDrop.dragAndDropTo(orderBasket);
+        return sauceInBasket.isDisplayed();
     }
 
-    //Листаем список вниз и жмем на кнопку "Булки", чтобы проверить переход и отображение заголовка
+    //Листаем список вниз и жмем на кнопку "Булки", перемещаем булок в корзину, проверяем отображение элемента в корзине
     @Step("Click the buns button and check the sign")
     public boolean clickBunsButtonCheckTheSign() {
         lastIngredient.scrollIntoView(true);
         bunsButton.click();
-        return bunsButton.isDisplayed();
+        bunForDrop.dragAndDropTo(orderBasket);
+        return bunInBasket.isDisplayed();
     }
 
 }

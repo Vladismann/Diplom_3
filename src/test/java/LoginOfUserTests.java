@@ -2,20 +2,46 @@ import PageObject.ForgotPasswordPage;
 import PageObject.LoginPage;
 import PageObject.MainPage;
 import PageObject.RegisterPage;
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import jdk.jfr.Name;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 import static PageObject.ForgotPasswordPage.FORGOT_PASSWORD_URL;
 import static PageObject.MainPage.MAIN_PAGE_URL;
 import static PageObject.RegisterPage.REGISTER_PAGE_URL;
-import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.page;
+import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static org.junit.Assert.assertEquals;
 
+@RunWith(Parameterized.class)
 public class LoginOfUserTests {
+
+    //Параметризация для кроссбраузерного тестирования
+    private final String browser;
+
+    public LoginOfUserTests(String browser) {
+        this.browser = browser;
+    }
+
+    @Parameterized.Parameters(name = "{0} browser")
+    public static Object[][] browserForTest() {
+        return new Object[][]{
+                {"Chrome"},
+                {"Edge"},
+                {"FireFox"}
+        };
+    }
+
+    @Before
+    public void setUp() {
+        closeWebDriver();
+        Configuration.browser = browser;
+    }
 
     @After
     public void tearDown() {

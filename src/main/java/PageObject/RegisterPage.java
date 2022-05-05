@@ -8,9 +8,6 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-import static PageObject.LoginPage.LOGIN_PAGE_URL;
-import static com.codeborne.selenide.WebDriverRunner.url;
-
 public class RegisterPage {
 
     //Урл страницы регистрации
